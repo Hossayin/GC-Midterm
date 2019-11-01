@@ -1,78 +1,81 @@
 #fullPlatform {
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  justify-content: center;
-  padding: 10px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: center;
+    padding: 10px;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
 }
+
 #platform {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .card {
-  border: 1px solid black;
-  height: 120px;
-  width: 100px;
-  margin-bottom: 16px;
-  position: relative;
+    border: 1px solid black;
+    height: 120px;
+    width: 100px;
+    margin-bottom: 16px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.flipper {
+    transform: rotateY(180deg);
+    transition: .06s;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
 .bottom {
-  border: 1px solid black;
-  height: 140px;
-  margin: 0 auto;
-  margin-bottom: 12px;
+    border: 1px solid black;
+    height: 140px;
+    margin: 0 auto;
+    margin-bottom: 12px;
 }
 
 #counter {
-  border: 1px solid black;
-  height: 60px;
-  width: 120px;
-  margin-top: 8px;
+    border: 1px solid black;
+    height: 60px;
+    width: 120px;
+    margin-top: 8px;
 }
 
 .reset {
-  border: 1px solid black;
-  height: 60px;
-  width: 120px;
-  text-align: center;
-  margin: auto;
+    border: 1px solid black;
+    height: 60px;
+    width: 120px;
+    text-align: center;
+    margin: auto;
 }
 
 #counter {
-  height: 100px;
-  width: 300px;
-  border: 1px solid black;
+    height: 100px;
+    width: 300px;
+    border: 1px solid black;
 }
 
-
 .genericPic {
-  height: 120px;
-  width: 100px;
-  background-color: aqua;
-  position: absolute;
+    height: 120px;
+    width: 100px;
+    background-color: aqua;
+    position: absolute;
+    transform: rotateY(0deg);
+    z-index: 2;
+    /* backface-visibility: hidden; */
 }
 
 .backPic {
-  height: 120px;
-  width: 100px;
-  background-size: cover;
-  background-position: center;  ; 
-  position: absolute;
- display: none;
-  
+    height: 120px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180);
+    position: absolute;
+    backface-visibility: hidden;
 }
- /* #a + div {
-  background-color: red;
-} */
-
-/* #b {
-  background-color: blue;
-} */ */
