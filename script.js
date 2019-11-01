@@ -16,8 +16,37 @@ for (let i = 0; i < 8; i++) {
   cardEl.appendChild(picBackEl);
   containerEl.appendChild(cardEl);
   platformEl.appendChild(containerEl);
+  // switch (i) {
+  //   case 0:
+  //     cardEl.id = "a";
+  //     break;
+  //   case 1:
+  //     cardEl.id = "b";
+  //     break;
+  //   case 2:
+  //     cardEl.id = "c";
+  //     break;
+  //   case 3:
+  //     cardEl.id = "d";
+  //     break;
+  //   case 4:
+  //     cardEl.id = "e";
+  //     break;
+  //   case 5:
+  //     cardEl.id = "f";
+  //     break;
+  //   case 6:
+  //     cardEl.id = "g";
+  //     break;
+  //   case 7:
+  //     cardEl.id = "h";
+  //     break;
+  // }
 }
+
 const cards = document.querySelectorAll(".card");
+
+resetEl.addEventListener("click", shuffle);
 
 function shuffle() {
   cards.forEach(card => {
@@ -28,9 +57,7 @@ function shuffle() {
 
 cards.forEach(card => card.addEventListener("click", flipCard));
 
-resetEl.addEventListener("click", shuffle);
-
-platformEl.addEventListener("click", countdown(1));
+platformEl.addEventListener("click", countdown);
 
 // Shows back face of card when you click
 function flipCard() {}
@@ -45,28 +72,39 @@ function disableCards() {}
 // Changes to front face of card after not finding a match
 function unflipCards() {}
 
-// Shuffles the deck and unflips all cards
+// Shuffles the deck and unflips all cards and calls countdown function
 function resetBoard() {}
 
-function countdown(minutes) {
+function countdown() {
+  let counter = document.getElementById("counter");
   let seconds = 60;
-  let mins = minutes;
-
-  function ticks() {
-    let counter = document.getElementById("counter");
-    let currentMinutes = mins - 1;
-    seconds--;
-
-    counter.innerHTML =
-      currentMinutes.toString() +
-      ":" +
-      (seconds < 10 ? "0" : "") +
-      String(seconds);
+  const timer = setInterval(function() {
     if (seconds > 0) {
-      setInterval(ticks, 1000);
-    } else {
-      countdown(mins - 1);
+      seconds--;
+      counter.innerText = `00:${seconds}`;
+    } else if (seconds === 0) {
+      clearInterval(timer);
+      // then remove event listener for flipping
     }
-  }
-  ticks();
+  }, 1000);
+  // if (event.target.classList.contains("card-container")) {
+  // let seconds = 60;
+  // let mins = 1;
+  // let counter = document.getElementById("counter");
+  // let currentMinutes = mins - 1;
+  // seconds--;
+
+  // counter.innerHTML =
+  //   currentMinutes.toString() +
+  //   ":" +
+  //   (seconds < 10 ? "0" : "") +
+  //   String(seconds);
+  // if (seconds > 0) {
+  //   setInterval(function test() {
+  //     seconds--;
+  //   }, 1000);
+  // } else {
+  //   countdown(mins - 1);
+  // }
+  // }
 }
