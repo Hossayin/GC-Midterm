@@ -1,9 +1,6 @@
 "use strict";
 const platformEl = document.getElementById("platform");
-
-const resetEl = document.createElement("div");
-resetEl.classList.add("reset");
-resetEl.innerText = "Reset";
+const mainEl = document.getElementById("fullPlatform");
 
 for (let i = 0; i < 8; i++) {
   const containerEl = document.createElement("div");
@@ -19,11 +16,36 @@ for (let i = 0; i < 8; i++) {
   containerEl.appendChild(cardEl);
   platformEl.appendChild(containerEl);
 }
+const cards = document.querySelectorAll(".card");
 
-// const cards = document.querySelectorAll('.card');
+function shuffle() {
+  cards.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 8);
+    card.style.order = randomPos;
+  });
+}
 
-// cards.forEach(card => card.addEventListener('click', flipCard()));
+cards.forEach(card => card.addEventListener("click", flipCard()));
 
-// resetEl.addEventListener('click', shuffle());
+resetEl.addEventListener("click", shuffle());
 
-// platformEl.addEventListener("click", startTimer());
+platformEl.addEventListener("click", startTimer());
+
+// Shows back face of card when you click
+function flipCard() {}
+
+function checkMatch() {
+  function disappear() {}
+}
+
+// Prevents user from clicking a third card
+function disableCards() {}
+
+// Changes to front face of card after not finding a match
+function unflipCards() {}
+
+// Shuffles the deck and unflips all cards
+function resetBoard() {}
+
+// Starts when you click any card
+function startTimer() {}

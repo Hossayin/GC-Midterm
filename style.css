@@ -36,8 +36,15 @@ h1 {
   margin-top: 8px;
 }
 
-#reset {
+.reset {
   border: 1px solid black;
   height: 60px;
   width: 120px;
+  text-align: center;
+}
+
+.timer-container {
+  height: 100px;
+  width: 300px;
+  border: 1px solid black;
 }
