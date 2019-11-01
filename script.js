@@ -26,6 +26,14 @@ function colorChange(e) {
   e.target.style.backgroundColor = "red";
 }
 
+
+// >>>>>>> Stashed changes
+
+// hints from Mitch: 
+
+// let checkArray = []
+// if(checkArray[0].backgroundImage)
+
 // let resetButton = document.getElementById("reset");
 // resetButton.addEventListener("click", shuffle(), reset());
 
@@ -42,3 +50,11 @@ function colorChange(e) {
 //     }
 //     return array;
 //   }
+
+/* what this lab is doing: 
+1. function that flips two cards at a time
+    - event listener on the container that flips card on click
+2. checks to see if those cards match by checking some property like background image
+3. if they match, they disappear from page (change class to stgh with display: none)
+4. if they do not match, flips the cards back 
+
