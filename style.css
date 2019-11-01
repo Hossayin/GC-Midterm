@@ -43,7 +43,7 @@ h1 {
   text-align: center;
 }
 
-.timer-container {
+#counter {
   height: 100px;
   width: 300px;
   border: 1px solid black;
