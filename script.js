@@ -98,7 +98,7 @@ function checkMatch() {
   function disappear() {}
 }
 
-// Prevents user from clicking a third card
+// Prevents user from flipping a third card
 function disableCards() {}
 
 // Changes to front face of card after not finding a match
