@@ -19,7 +19,7 @@ for (let i = 0; i < 8; i++) {
   const containerEl = document.createElement("div");
   containerEl.classList.add("card-container");
   const cardEl = document.createElement("div");
-  cardEl.classList.add("card");
+  cardEl.classList.add("card", "flipper");
   const picFrontEl = document.createElement("div");
   picFrontEl.classList.add("genericPic");
   const picBackEl = document.createElement("div");
@@ -29,43 +29,10 @@ for (let i = 0; i < 8; i++) {
   containerEl.appendChild(cardEl);
   platformEl.appendChild(containerEl);
   picBackEl.style.backgroundImage = `url(./images/${shuffled[i]})`;
-
-  // switch (i) {
-  //   case 0:
-  //     cardEl.id = "a";
-  //     break;
-  //   case 1:
-  //     cardEl.id = "b";
-  //     break;
-  //   case 2:
-  //     cardEl.id = "c";
-  //     break;
-  //   case 3:
-  //     cardEl.id = "d";
-  //     break;
-  //   case 4:
-  //     cardEl.id = "e";
-  //     break;
-  //   case 5:
-  //     cardEl.id = "f";
-  //     break;
-  //   case 6:
-  //     cardEl.id = "g";
-  //     break;
-  //   case 7:
-  //     cardEl.id = "h";
-  //     break;
-  // }
+  cardEl.addEventListener("click", flipCard);
 }
 
 resetEl.addEventListener("click", shuffle);
-
-// function shuffle(e) {
-//   ifcards.forEach(card => {
-//     let randomPos = Math.floor(Math.random() * 8);
-//     card.style.order = randomPos;
-//   });
-// }
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -87,12 +54,18 @@ function shuffle(array) {
   return array;
 }
 
-cards.forEach(card => card.addEventListener("click", flipCard));
-
 platformEl.addEventListener("click", countdown);
 
 // Shows back face of card when you click
-function flipCard() {}
+// cardEl.addEventListener("click", flipCard);
+// cardEl.className.add("flipper");
+
+function flipCard(e) {
+  console.log(e.target);
+  if (e.target.classList.contains("card")) {
+    e.target.classList.toggle("flipper");
+  }
+}
 
 function checkMatch() {
   function disappear() {}
@@ -119,24 +92,4 @@ function countdown() {
       // then remove event listener for flipping
     }
   }, 1000);
-  // if (event.target.classList.contains("card-container")) {
-  // let seconds = 60;
-  // let mins = 1;
-  // let counter = document.getElementById("counter");
-  // let currentMinutes = mins - 1;
-  // seconds--;
-
-  // counter.innerHTML =
-  //   currentMinutes.toString() +
-  //   ":" +
-  //   (seconds < 10 ? "0" : "") +
-  //   String(seconds);
-  // if (seconds > 0) {
-  //   setInterval(function test() {
-  //     seconds--;
-  //   }, 1000);
-  // } else {
-  //   countdown(mins - 1);
-  // }
-  // }
 }
