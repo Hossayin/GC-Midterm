@@ -59,6 +59,8 @@ function shuffle(array) {
 
 platformEl.addEventListener("click", countdown);
 
+let matchedPairs = 0;
+
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
@@ -81,6 +83,7 @@ function flipCard(e) {
       let img2 = secondCard.lastChild.getAttribute("style");
 
       if (img1 === img2) {
+        matchedPairs++;
         function disableCards() {
           firstCard.classList.add("disappear");
           secondCard.classList.add("disappear");
@@ -100,9 +103,6 @@ function flipCard(e) {
           secondCard.classList.add("flipper");
           lockBoard = false;
         }, 600);
-
-        // }
-        // unflipCards();
       }
     }
     checkMatch();
@@ -115,26 +115,29 @@ function countdown() {
   if (!timerStarted) {
     timerStarted = true;
     let counter = document.getElementById("counter");
-    let seconds = 60;
-    const timer = setInterval(function() {
+    let seconds = 30;
+    let timer = setInterval(function() {
       if (seconds > 0) {
         seconds--;
         counter.innerText = `00:${seconds}`;
       } else if (seconds === 0) {
         timerStarted = false;
         clearInterval(timer);
-        // then remove event listener for flipping
+      }
+      if (matchedPairs === 4) {
+        timerStarted = false;
+        clearInterval(timer);
+        let winBox = document.createElement("div");
+        winBox.classList.add("winner");
+        winBox.innerText = `Congrats, you matched 'em all!`;
+        platformEl.appendChild(winBox);
       }
     }, 1000);
   }
 }
 
 // function winner() {
-//   if (cards.classList.contains("disappear")) {
+//   if (cards.forEach(card => card.classList.contains("disappear")) {
 //     alert("Congrats, you matched all the cards!");
 //   }
 // }
-
-// cards.forEach(if (cards.classList.contains("disappear")) {
-//   alert("Congrats, you matched all the cards!");
-// });
