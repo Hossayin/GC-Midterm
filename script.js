@@ -33,8 +33,6 @@ for (let i = 0; i < 8; i++) {
   cardEl.addEventListener("click", flipCard);
 }
 
-resetEl.addEventListener("click", shuffle);
-
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
@@ -53,6 +51,10 @@ function shuffle(array) {
   }
 
   return array;
+
+  // cards.forEach(card => {
+  //   card.classList.add("flipper");
+  // });
 }
 
 platformEl.addEventListener("click", countdown);
@@ -62,6 +64,7 @@ let lockBoard = false;
 let firstCard, secondCard;
 // Shows back face of card when you click
 function flipCard(e) {
+  if (lockBoard) return;
   if (e.target.classList.contains("card")) {
     e.target.classList.toggle("flipper");
   }
@@ -79,20 +82,27 @@ function flipCard(e) {
 
       if (img1 === img2) {
         function disableCards() {
+          firstCard.classList.add("disappear");
+          secondCard.classList.add("disappear");
           firstCard.removeEventListener("click", flipCard);
           secondCard.removeEventListener("click", flipCard);
         }
         disableCards();
+
         console.log("It's a match!");
       } else {
         // not a match
-        function unflipCards(e) {
-          setTimeout(() => {
-            firstCard.classList.remove("flipper");
-            secondCard.classList.remove("flipper");
-          }, 1500);
-        }
-        unflipCards();
+        // function unflipCards() {
+        lockBoard = true;
+        setTimeout(() => {
+          console.log("flip back");
+          firstCard.classList.add("flipper");
+          secondCard.classList.add("flipper");
+          lockBoard = false;
+        }, 600);
+
+        // }
+        // unflipCards();
       }
     }
     checkMatch();
@@ -100,56 +110,6 @@ function flipCard(e) {
 
   console.log({ firstCard, secondCard });
 }
-
-// function checkMatch() {
-//   let img1 = firstCard.lastChild.getAttribute("style");
-//   let img2 = secondCard.lastChild.getAttribute("style");
-
-//   if (img1 === img2) {
-//     disableCards();
-//     console.log("It's a match!");
-//   } else {
-//     // not a match
-//     unflipCards();
-//   }
-// }
-
-// Prevents user from flipping a third card
-// function disableCards(e) {
-//   firstCard.removeEventListener("click", flipCard);
-//   secondCard.removeEventListener("click", flipCard);
-// }
-
-// function unflipCards() {
-//   setTimeout(() => {
-//     firstCard.classList.remove("flipper");
-//     secondCard.classList.remove("flipper");
-//   }, 1500);
-// }
-
-// function checkMatch() {
-//   let img1 = firstCard.lastChild.getAttribute("style");
-//   let img2 = secondCard.lastChild.getAttribute("style");
-
-//   if (img1 === img2) {
-//     firstCard.removeEventListener("click", flipCard);
-//     secondCard.removeEventListener("click", flipCard);
-//     console.log("Function was executed");
-//   } else {
-//     // not a match
-//     setTimeout(() => {
-//       firstCard.classList.remove("flipper");
-//       secondCard.classList.remove("flipper");
-//     }, 1500);
-//   }
-// }
-
-// Changes to front face of card after not finding a match
-// function unflipCards(e) {
-//   if (e.target.classList.contains("flipper")) {
-//     e.target.classList.toggle("card");
-//   }
-// }
 
 function countdown() {
   if (!timerStarted) {
@@ -168,3 +128,13 @@ function countdown() {
     }, 1000);
   }
 }
+
+// function winner() {
+//   if (cards.classList.contains("disappear")) {
+//     alert("Congrats, you matched all the cards!");
+//   }
+// }
+
+// cards.forEach(if (cards.classList.contains("disappear")) {
+//   alert("Congrats, you matched all the cards!");
+// });
