@@ -51,6 +51,10 @@ h1 {
   transition: transform 0.5s;
 }
 
+/* .match {
+  display: none;
+} */
+
 .card:active {
   transform: scale(0.97);
   transition: transform 0.2s;

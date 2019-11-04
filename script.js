@@ -56,29 +56,77 @@ function shuffle(array) {
 
 platformEl.addEventListener("click", countdown);
 
+let hasFlippedCard = false;
+let firstCard, secondCard;
 // Shows back face of card when you click
-// cardEl.addEventListener("click", flipCard);
-// cardEl.className.add("flipper");
-
 function flipCard(e) {
-  console.log(e.target);
   if (e.target.classList.contains("card")) {
     e.target.classList.toggle("flipper");
   }
+  if (!hasFlippedCard) {
+    //first click
+    hasFlippedCard = true;
+    firstCard = this;
+  } else {
+    // second click
+    hasFlippedCard = false;
+    secondCard = this;
+
+    checkMatch();
+  }
+
+  console.log({ firstCard, secondCard });
 }
 
 function checkMatch() {
-  function disappear() {}
+  let img1 = firstCard.lastChild.getAttribute("style");
+  let img2 = secondCard.lastChild.getAttribute("style");
+
+  if (img1 === img2) {
+    disableCards();
+    console.log("It's a match!");
+  } else {
+    // not a match
+    unflipCards();
+  }
 }
 
 // Prevents user from flipping a third card
-function disableCards() {}
+function disableCards(e) {
+  firstChild.removeEventListener("click", flipCard);
+  secondChild.removeEventListener("click", flipCard);
+}
+
+function unflipCards() {
+  setTimeout(() => {
+    firstChild.classList.remove("flipper");
+    secondChild.classList.remove("flipper");
+  }, 1500);
+}
+
+function checkMatch() {
+  let img1 = firstCard.lastChild.getAttribute("style");
+  let img2 = secondCard.lastChild.getAttribute("style");
+
+  if (img1 === img2) {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    console.log("Function was executed");
+  } else {
+    // not a match
+    setTimeout(() => {
+      firstCard.classList.remove("flipper");
+      secondCard.classList.remove("flipper");
+    }, 1500);
+  }
+}
 
 // Changes to front face of card after not finding a match
-function unflipCards() {}
-
-// Shuffles the deck and unflips all cards and calls countdown function
-function resetBoard() {}
+function unflipCards(e) {
+  if (e.target.classList.contains("flipper")) {
+    e.target.classList.toggle("card");
+  }
+}
 
 function countdown() {
   let counter = document.getElementById("counter");
